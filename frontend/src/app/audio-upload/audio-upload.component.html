@@ -1,0 +1,64 @@
+<div class="container">
+  <h2>Upload Audio File</h2>
+  <form (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-group">
+      <label for="audiofile" class="custom-file-label">Audio File:</label>
+      <div class="custom-file-container">
+        <input type="file" id="audiofile" class="custom-file-input" (change)="onFileSelected($event)">
+        <label for="audiofile" class="custom-file-button">{{ selectedFileName || 'Choose File' }}</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="language">Language:</label>
+      <select id="language" [(ngModel)]="language" name="language" value="" class="custom-select">
+        <option value="">Autodetect</option>
+        <option value="en">English</option>
+        <option value="de">German</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="it">Italian</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="whisperModel">Whisper Model:</label>
+      <select id="whisperModel" [(ngModel)]="whisperModel" name="whisperModel" value="whisper_offline/whisper-large" class="custom-select">
+        <option value="whisper_offline/whisper-tiny">whisper_offline/whisper-tiny</option>
+        <option value="whisper_offline/whisper-base">whisper_offline/whisper-base</option>
+        <option value="whisper_offline/whisper-small">whisper_offline/whisper-small</option>
+        <option value="whisper_offline/whisper-medium">whisper_offline/whisper-medium</option>
+        <option value="whisper_offline/whisper-large">whisper_offline/whisper-large</option>
+        <option value="whisper_offline/whisper-large-v2">whisper_offline/whisper-large-v2</option>
+        <option value="whisper_offline/whisper-large-v3">whisper_offline/whisper-large-v3</option>
+        <option value="whisper_online/whisper-1">whisper_online/whisper-1</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="chatgptModel">ChatGPT Model:</label>
+      <select id="chatgptModel" [(ngModel)]="chatgptModel" name="chatgptModel" value="chatgpt/gpt-3.5-turbo" class="custom-select">
+        <option value="chatgpt/gpt-4o">chatgpt/gpt-4o</option>
+        <option value="chatgpt/gpt-4-turbo">chatgpt/gpt-4-turbo</option>
+        <option value="chatgpt/gpt-4">chatgpt/gpt-4</option>
+        <option value="chatgpt/gpt-3.5-turbo">chatgpt/gpt-3.5-turbo</option>
+      </select>
+    </div>
+    <button type="submit" class="btn-submit">Upload</button>
+  </form>
+  <div *ngIf="waitingForResult" class="result-container">
+    <mat-progress-bar mode="indeterminate" color="pirmary"></mat-progress-bar>
+  </div>
+
+  <div *ngIf="transcribedText" class="result-container">
+    <h3>Transcribed Text:</h3>
+    <div class="result-box" [innerHTML]="transcribedText"></div>
+    <button cdkCopyToClipboard="{{transcribedText}}">Copy Transcribed Text</button>
+  </div>
+  <div *ngIf="summarizedText" class="result-container">
+    <h3>Summarized Text:</h3>
+    <div class="result-box" [innerHTML]="summarizedText"></div>
+    <button cdkCopyToClipboard="{{summarizedText}}">Copy Summary</button>
+  </div>
+  <div *ngIf="errorMessage" class="result-container error">
+    <h3>Error:</h3>
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>
