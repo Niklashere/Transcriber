@@ -1,0 +1,9 @@
+numpy
+soundfile
+torch
+transformers
+fastapi
+fastapi-cors
+uvicorn
+openai
+scipy

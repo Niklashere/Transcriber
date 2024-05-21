@@ -1,0 +1,11 @@
+#Folders
+.venv
+__pycache__
+frontend/node_modules
+frontend/dist
+frontend/coverage
+.vscode
+
+
+#Files
+backend/config.py
