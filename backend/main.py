@@ -9,7 +9,7 @@ from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from config import API_KEY
+from config import *
 from llm.llm import get_llm_text
 from transcribers.transcriber import get_transcribed_text
 
@@ -43,7 +43,7 @@ async def upload_audio(
     try:
         print(language)
         transcribed_text = get_transcribed_text(audiofile, language, whisper_model)
-        summarized_text = get_llm_text(transcribed_text, chatgpt_model)
+        summarized_text = get_llm_text(PROMPT, transcribed_text, chatgpt_model)
         print(summarized_text)
 
         return JSONResponse(content={

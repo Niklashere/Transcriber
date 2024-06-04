@@ -34,6 +34,7 @@ Planned features and enhancements can be found on the project's board. Check out
 7. Install PyTorch from [here](https://pytorch.org/get-started/locally/).
 8. **OPTIONAL:** When using a supported OS, install Accelerate to benefit from performance gains. Check [here](https://huggingface.co/docs/accelerate/basic_tutorials/install) for instructions.
 9. **OPTIONAL:** Install Deepspeed to benefit from additional performance gains. Instructions can be found [here](https://github.com/microsoft/DeepSpeed?tab=readme-ov-file#installation).
+10. Rename `config.example.py` to `config.py` and configure to your liking.
 10. Start the backend by executing `main.py` in the backend folder.
 11. Start the frontend by typing `ng serve` into the console inside the frontend folder.
 
